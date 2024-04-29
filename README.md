@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ⛅ Template Project Next.js, Prisma, and Cloudflare R2
 
-## Getting Started
+> [!NOTE]
+> Template Project Next.js, Prisma, and Cloudflare R2 for Bootcamp devscale.id (Beginner Class).
 
-First, run the development server:
+This is an example template, already set up:
+
+- [Prisma](https://prisma.io/)
+- [Cloudflare R2](https://www.cloudflare.com/developer-platform/r2/)
+
+## Environment Variables
+
+_Soon_
+
+## How to use it:
+
+1. Clone this repo or use as template:
+
+- Clone the repo.
+
+```bash
+git clone https://github.com/rezarinaldi/devscale-nextjs-prisma-r2.git
+# at current directory/folder
+git clone https://github.com/rezarinaldi/devscale-nextjs-prisma-r2.git .
+
+# using ssh
+git clone git@github.com:rezarinaldi/devscale-nextjs-prisma-r2.git
+# at current directory/folder
+git clone git@github.com:rezarinaldi/devscale-nextjs-prisma-r2.git .
+```
+
+- Create project with template.
+
+```bash
+npx create-next-app@latest -e https://github.com/rezarinaldi/devscale-nextjs-prisma-r2
+# at current directory/folder
+npx create-next-app@latest -e https://github.com/rezarinaldi/devscale-nextjs-prisma-r2 .
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Copy the `.env.example` to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+4. Setting provider database and create database model in the [schema.prisma](./src/prisma/schema.prisma) file.
+
+```bash
+src
+└── prisma
+    └── schema.prisma
+```
+
+5. Do prisma migration:
+
+> [!WARNING]
+> This step if the database provider used is `SQLite`, otherwise ignore it and skip this step.
+
+```bash
+npm run db:migrate
+```
+
+6. Use `db push` to push the initial schema to the database:
+
+```bash
+npm run db:push
+```
+
+7. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+8. Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+9. Do prisma studio:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run db:studio
+```
 
-## Learn More
+10. Open http://localhost:5555 with your browser to see the result.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> [!TIP]
+> Don't forget adding `prisma generate` to the existing script build command Vercel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Vercel UI's build script field
 
-## Deploy on Vercel
+Another way to configure `prisma generate` to be run on every deployment is to add the command to the build settings via Vercel's UI.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Within your project's dashboard, go to the `Settings` tab and find the `General` section. In that section you will find a box labeled `Build & Development Settings` that contains an input field named `Build Command`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![build-command-1](public/readme/vercel-ui-build-command.png)
+
+Within that field, prepend `prisma generate` to the existing script:
+
+```bash
+prisma generate && next build
+```
+
+![build-command-2](public/readme/vercel-ui-build-command-filled.png)
+
+Reference: [Vercel build dependency caching workaround](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/vercel-caching-issue)
