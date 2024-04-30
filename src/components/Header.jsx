@@ -1,5 +1,7 @@
 export default function Header() {
   return (
-    <div>Hello There! 👋</div>
-  )
+    <div>
+      <h2 className="text-2xl font-bold tracking-tight">Hello There! 👋</h2>
+    </div>
+  );
 }

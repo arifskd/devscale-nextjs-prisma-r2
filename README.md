@@ -5,6 +5,8 @@
 
 This is an example template, already set up:
 
+- [daisyUI](https://daisyui.com/)
+- [Nano ID](https://www.npmjs.com/package/nanoid)
 - [Prisma](https://prisma.io/)
 - [Cloudflare R2](https://www.cloudflare.com/developer-platform/r2/)
 
