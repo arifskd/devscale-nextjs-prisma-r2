@@ -10,7 +10,22 @@ This is an example template, already set up:
 
 ## Environment Variables
 
-_Soon_
+> Vercel Postgres
+
+- POSTGRES_URL
+- POSTGRES_PRISMA_URL
+- POSTGRES_URL_NO_SSL
+- POSTGRES_URL_NON_POOLING
+- POSTGRES_USER
+- POSTGRES_HOST
+- POSTGRES_PASSWORD
+- POSTGRES_DATABASE
+
+> Cloudflare R2
+
+- R2_CLOUDFLARE_ENDPOINT
+- R2_ACCESSID
+- R2_SECRETKEY
 
 ## How to use it:
 
@@ -49,11 +64,10 @@ npm install
 cp .env.example .env
 ```
 
-4. Setting provider database and create database model in the [schema.prisma](./src/prisma/schema.prisma) file.
+4. Setting provider database and create database model in the [schema.prisma](./prisma/schema.prisma) file.
 
 ```bash
-src
-└── prisma
+prisma
     └── schema.prisma
 ```
 
